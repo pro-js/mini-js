@@ -1,8 +1,8 @@
-let express = require('express');
-let app = express();
+const express = require("express");
+const app = express();
 let photoRouter = require('./router/photoRouter');
 
-// Middleware 
+// body parser configuration
 app.use(express.json());
 
 // Router

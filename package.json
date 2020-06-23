@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/pro-js/node-file-upload-cloudinary-api#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cloudinary": "^1.22.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "mongoose": "^5.9.20",
     "nodemon": "^2.0.4"
   }
