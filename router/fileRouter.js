@@ -1,8 +1,9 @@
 let express = require('express');
 let router = express.Router();
-let { photoUpload } = require('../controller/fileController');
+let { fileUpload, getAllFiles } = require('../controller/fileController');
 let multerUploads = require('../fileSetting/multer');
 
-router.route('/upload').post(multerUploads, photoUpload);
+router.route('/upload').post(multerUploads, fileUpload);
+router.route('/').get(getAllFiles);
 
 module.exports = router;

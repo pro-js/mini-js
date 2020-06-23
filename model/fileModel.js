@@ -1,43 +1,44 @@
 let mongoose = require('mongoose');
 
 let fileSchema = new mongoose.Schema({
-  publicId: {
+  public_id: {
     type: String,
-    required: [true, 'please provide image publicId']
+    required: [true, 'please provide file public Id']
   },
   version: {
     type: Number,
-    required: [true, 'please provide image version'],
+    required: [true, 'please provide file version'],
     select: false
   },
   signature: {
     type: String,
-    required: [true, 'please provide image signature']
+    required: [true, 'please provide file signature'],
+    select: false
   },
   width: {
     type: Number,
-    required: [true, 'please provide image width']
+    required: [true, 'please provide file width']
   },
   height: {
     type: Number,
-    required: [true, 'please provide image height']
+    required: [true, 'please provide file height']
   },
   format: {
     type: String,
-    required: [true, 'please provide image format']
+    required: [true, 'please provide file format']
   },
-  createdAt: {
+  created_at: {
     type: String,
-    required: [true, 'please provide image created_at time'],
+    required: [true, 'please provide file created_at time'],
     select: false
   },
   url: {
     type: String,
-    required: [true, 'please provide image url']
+    required: [true, 'please provide file url']
   },
-  secureUrl: {
+  secure_url: {
     type: String,
-    required: [true, 'please provide image secure_url'],
+    required: [true, 'please provide file secure_url'],
     select: false
   }
 });
