@@ -34,3 +34,13 @@ exports.fileUpload = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAllFiles = catchAsync(async (req, res, next) => {
+  let fileData = await FileModel.find();
+  res.status(200).json({
+    status: 'ok',
+    lenght: fileData.length,
+    data: {
+      fileData
+    }
+  });
+});
