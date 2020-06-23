@@ -2,7 +2,7 @@
 
 ## Getting Started
 ### :large_blue_diamond: Features :fire:
- :heavy_check_mark: upload file (image, video, pdf, audio)\
+ :heavy_check_mark: upload file (☑️  image, 	🔲  video, 	🔲  pdf, 	🔲  audio)\
  :heavy_check_mark: get file url (cloud)\
  :heavy_check_mark: get all files from database
 
