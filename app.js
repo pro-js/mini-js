@@ -1,6 +1,6 @@
 let express = require("express");
 let app = express();
-let photoRouter = require('./router/photoRouter');
+let photoRouter = require('./router/fileRouter');
 
 // body parser configuration
 app.use(express.json());

@@ -1,6 +1,6 @@
 let fs = require('fs');
-let catchAsync = require('./../util/catchAsync');
-let cloudinary = require('./../photoSetting/cloudinarySetting');
+let catchAsync = require('../util/catchAsync');
+let cloudinary = require('../fileSetting/cloudinarySetting');
 let path = require('path'); 
  
 exports.photoUpload = catchAsync(async (req, res, next) => {

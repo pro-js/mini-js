@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-let photoSchema = new mongoose.Schema({
+let fileSchema = new mongoose.Schema({
   publicId: {
     type: String,
     required: [true, 'please provide image publicId']
@@ -42,6 +42,6 @@ let photoSchema = new mongoose.Schema({
   }
 });
 
-let photoModel = mongoose.model('Photos', photoSchema);
+let fileModel = mongoose.model('files', fileSchema);
 
-module.exports = photoModel;
+module.exports = fileModel;
