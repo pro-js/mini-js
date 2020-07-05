@@ -1,9 +1,9 @@
 let fs = require('fs');
 let FileModel = require('./../model/fileModel');
 let catchAsync = require('../util/catchAsync');
-let cloudinary = require('../fileSetting/cloudinarySetting');
-let path = require('path'); 
- 
+let cloudinary = require('../config/cloudinarySetting');
+let deleteCloudinary = require('cloudinary');
+  
 exports.fileUpload = catchAsync(async (req, res, next) => {
   //let extension = path.extname(req.file.originalname);
   let fileInfo = req.file.path
@@ -41,6 +41,25 @@ exports.getAllFiles = catchAsync(async (req, res, next) => {
     lenght: fileData.length,
     data: {
       fileData
+    }
+  });
+});
+
+exports.destroyFiles = catchAsync(async (req, res, next) => {
+  let publicID = req.body.public_id;
+   deleteCloudinary.v2.uploader.destroy(publicID, async function(error, result) {
+    if (result) {
+      await FileModel.deleteOne({ public_id: publicID });
+      res.json({
+        status: 'ok',
+        message: 'Successfully Delete this File!'
+      });
+    }
+    else {
+      res.status(500).send({
+        status: 'failure',
+        message: 'Not Found this ID !!!',
+      });
     }
   });
 });

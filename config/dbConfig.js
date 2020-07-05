@@ -5,4 +5,9 @@ mongoose.connect(process.env.DATABASE_LOCAL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
-}).then(() => console.log('DB connect success'));
+}).then(() => {
+  console.log('DB connect success')
+})
+.catch(() => {
+  console.log('Somthing error to connect DB!!!')
+});

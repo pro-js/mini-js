@@ -1,6 +1,6 @@
 let dotEnv = require('dotenv');
-dotEnv.config({ path: './env/config.env' });
-require('./db/connection');
+dotEnv.config({ path: './config/myEnv.env' });
+require('./config/dbConfig');
 
 let app = require('./app');
 
