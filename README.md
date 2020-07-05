@@ -4,7 +4,8 @@
 ### :large_blue_diamond: Features :fire:
  :heavy_check_mark: upload file (☑️  image, 	🔲  video, 	🔲  pdf, 	🔲  audio)\
  :heavy_check_mark: get file url (cloud)\
- :heavy_check_mark: get all files from database
+ :heavy_check_mark: get all files from database\
+ :heavy_check_mark: destroy Files on cloud & database
 
 ### :large_blue_diamond: Dependencies
   - [cloudinary](https://www.npmjs.com/package/cloudinary) - use for Cloud service (file store)
@@ -35,7 +36,7 @@
 
 ### :large_blue_diamond: API access
   :red_circle: **File-Upload** (post req): `http://localhost:3000/api/photo/upload`
-  ```
+  ```js
   - body data
     ex: image-file: suzuki-gsx-r150.jpg
     
@@ -56,7 +57,7 @@
   }
   ```
   :red_circle: **Get-All-Files** (get req): `http://localhost:3000/api/photo/`
-  ```
+  ```js
   {
     "status": "ok",
     "lenght": 2,
@@ -84,7 +85,31 @@
       }
   }
   ```
+  :red_circle: **Destroy-Files** (post req): `http://localhost:4000/api/photo/delete/`
+  ```js
+  - body data (Valid)
+    {
+       "public_id": "w5am7fptc9dec65t19dq"
+    }
+    
+  - response 
+  {
+    "status": "ok",
+    "message": "Successfully Delete this File!"
+  }
   
+  - body data (In-Valid)
+    {
+       "public_id": "w5am7fptc9dec65"
+    }
+    
+  - response 
+  {
+    "status": "failure",
+    "message": "Not Found this ID !!!"
+  }
+  ```
+ 
 
 ### :large_blue_diamond: I have a question. Where should I ask? :thinking:
 
