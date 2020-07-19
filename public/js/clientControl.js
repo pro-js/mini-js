@@ -30,7 +30,6 @@ function removePhoto(resData) {
   $(".commonClass").on('click', function() {
     let thisID = this.id;
     resData = resData.filter(el => el.public_id !== thisID);
-    console.log(thisID)
     $.post(apiUrl, { public_id: thisID }, function() {})
       .done(function (res) {
         showMaterialToast("Destroy Success!!!", "green darken-3");

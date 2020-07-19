@@ -47,8 +47,7 @@ exports.getAllFiles = catchAsync(async (req, res, next) => {
 
 exports.destroyFiles = catchAsync(async (req, res, next) => {
   let publicID = req.body.public_id;
-  console.log(req);
-   deleteCloudinary.v2.uploader.destroy(publicID, async function(error, result) {
+  deleteCloudinary.v2.uploader.destroy(publicID, async function(error, result) {
     if (result) {
       await FileModel.deleteOne({ public_id: publicID });
       res.json({
