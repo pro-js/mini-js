@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel='shortcut icon' type='image/x-icon' href='./img/favicon.ico' />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Management</title>
+
+  <!--- CSS -->
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/icon.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  
+  <div class="customContainer">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card center-align hoverable waves-light lighten-1">
+          <div class="card-content black-text">
+            <span class="card-title">
+              <h5 class="center">
+                <i class="material-icons">cloud_upload</i> 
+                Upload Session
+              </h5>
+            </span>
+            <br>
+            <input class="" type="file" name="fileHere" id="">
+            <input class="btn" type="button" value="Upload">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="photosID"></div>
+    </div>
+  </div>
+
+  <!--- JS -->
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/materialize.min.js"></script>
+  <script src="./js/getData.js"></script>
+</body>
+</html>
