@@ -42,6 +42,10 @@ function removePhoto(resData) {
   });
 }
 
+function setError() {
+  
+}
+
 /*** Show Toast ***/
 function showMaterialToast(data, style) {
   M.toast({

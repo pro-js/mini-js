@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  
   <div class="customContainer">
     <div class="row">
       <form action="/api/photo/upload" enctype="multipart/form-data" method="post">
@@ -22,7 +21,7 @@
               <span class="card-title">
                 <h5 class="center">
                   <i class="material-icons">cloud_upload</i> 
-                  Upload Session
+                  Upload Photos
                 </h5>
               </span>
               <br>
@@ -30,6 +29,18 @@
               <input class="btn" type="submit" value="Upload" id="uploadBtn">
             </div>
           </div>
+        </div>
+        <div class="col s12 m6">
+          <nav class="nav-extended">
+            <div class="nav-content">
+              <ul class="tabs tabs-transparent green lighten-1">
+                <li class="tab"><a class="active" href="/">Photos</a></li>
+                <li class="tab"><a href="#test2">Videos</a></li>
+                <li class="tab"><a href="#test3">Audio</a></li>
+                <li class="tab"><a href="#test4">Other Files</a></li>
+              </ul>
+            </div>
+          </nav>
         </div>
       </form>
     </div>

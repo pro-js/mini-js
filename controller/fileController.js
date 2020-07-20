@@ -8,23 +8,22 @@ exports.fileUpload = catchAsync(async (req, res, next) => {
   const form = new Formidable();
    form.parse (req, (err, fields, files) => {
     if (err) return next(err);
-
     let filePath = files.upload.path;
-    cloudinary.uploader.upload(filePath)
-      .then(async (result) => {
-        // create a file collection on FileModel
-        let fileCreate = await FileModel.create(result);
-        // fileCreate.version = undefined;
-        // fileCreate.signature = undefined;
-        // fileCreate.created_at = undefined;
-        // fileCreate.secure_url = undefined;
-        res.redirect('/');
-      }).catch((error) => {
-        res.status(500).send({
-          message: "failure",
-          error,
-        });
-      });
+    cloudinary.uploader.upload(filePath, {
+      transformation: [
+        {
+          width: 500,
+          height: 500,
+          gravity:"face"
+        }
+      ]
+    })
+    .then(async (result) => {
+      await FileModel.create(result);
+      res.redirect('/');
+    }).catch((error) => {
+      res.redirect('/error');
+    });
   });
 });
 

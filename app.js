@@ -16,6 +16,10 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
   res.render('index');
 })
+app.get('/error', (req, res) => {
+  res.render('error');
+})
+
 app.use('/api/photo', photoRouter);
 
 module.exports = app;
