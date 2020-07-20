@@ -5,25 +5,31 @@ const deleteCloudinary = require('cloudinary');
 const Formidable = require('formidable');
 
 exports.fileUpload = catchAsync(async (req, res, next) => {
-  const form = new Formidable();
-   form.parse (req, (err, fields, files) => {
+  const form = Formidable({ multiples: true });
+  form.parse (req, (err, fields, files) => {
     if (err) return next(err);
-    let filePath = files.upload.path;
-    cloudinary.uploader.upload(filePath, {
-      transformation: [
-        {
-          width: 500,
-          height: 500,
-          gravity:"face"
+    
+    for (let i = 0; i < files.upload.length; i++) {
+      let filePath = files.upload[i].path;
+      cloudinary.uploader.upload(filePath, {
+        transformation: [
+          {
+            width: 500,
+            height: 500,
+            crop: "fill",
+            gravity:"face"
+          }
+        ]
+      })
+      .then(async (result) => {
+        await FileModel.create(result);
+        if (i + 1 === files.upload.length) {
+          res.redirect('/');
         }
-      ]
-    })
-    .then(async (result) => {
-      await FileModel.create(result);
-      res.redirect('/');
-    }).catch((error) => {
-      res.redirect('/error');
-    });
+      }).catch((error) => {
+        res.redirect('/error');
+      });
+    }
   });
 });
 
