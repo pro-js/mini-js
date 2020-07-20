@@ -1,4 +1,5 @@
 $(function() {
+
   let apiUrl = "http://localhost:4000/api/photo";
   $.get(apiUrl, function() {})
     .done(function(res) {
@@ -8,12 +9,12 @@ $(function() {
     })
     .fail(function() {
       showMaterialToast("Problem Load Files!!!", "red darken-3");
-    })
+    });
 });
 
 function setPhotos(resData) {
   let str = "";
-  for (let i = 0; i < resData.length; i++) {
+  for (let i = resData.length - 1; i >= 0; i--) {
     str += "<div class='col s12 m3'>";
     str += "<div class='card center-align hoverable waves-light lighten-1'>";
     str += "<div class='card-content'>";

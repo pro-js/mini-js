@@ -15,21 +15,23 @@
   
   <div class="customContainer">
     <div class="row">
-      <div class="col s12 m6">
-        <div class="card center-align hoverable waves-light lighten-1">
-          <div class="card-content black-text">
-            <span class="card-title">
-              <h5 class="center">
-                <i class="material-icons">cloud_upload</i> 
-                Upload Session
-              </h5>
-            </span>
-            <br>
-            <input class="" type="file" name="fileHere" id="">
-            <input class="btn" type="button" value="Upload">
+      <form action="/api/photo/upload" enctype="multipart/form-data" method="post">
+        <div class="col s12 m6">
+          <div class="card center-align hoverable waves-light lighten-1">
+            <div class="card-content black-text">
+              <span class="card-title">
+                <h5 class="center">
+                  <i class="material-icons">cloud_upload</i> 
+                  Upload Session
+                </h5>
+              </span>
+              <br>
+              <input type="file" name="upload" multiple="multiple">
+              <input class="btn" type="submit" value="Upload" id="uploadBtn">
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
     <div class="row">
       <div id="photosID"></div>

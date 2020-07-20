@@ -1,36 +1,30 @@
-let fs = require('fs');
-let FileModel = require('./../model/fileModel');
-let catchAsync = require('../util/catchAsync');
-let cloudinary = require('../config/cloudinarySetting');
-let deleteCloudinary = require('cloudinary');
-  
-exports.fileUpload = catchAsync(async (req, res, next) => {
-  //let extension = path.extname(req.file.originalname);
-  let fileInfo = req.file.path
-  await cloudinary.uploader.upload(fileInfo)
-  .then(async (result) => {
-    // create a file collection on FileModel
-    let fileCreate = await FileModel.create(result);
-    fileCreate.version = undefined;
-    fileCreate.signature = undefined;
-    fileCreate.created_at = undefined;
-    fileCreate.secure_url = undefined;
+const FileModel = require('./../model/fileModel');
+const catchAsync = require('../util/catchAsync');
+const cloudinary = require('../config/cloudinarySetting');
+const deleteCloudinary = require('cloudinary');
+const Formidable = require('formidable');
 
-    // send response
-    res.status(201).send({
-      message: "success",
-      data: {
-        fileCreate
-      },
-    });
-  }).catch((error) => {
-    res.status(500).send({
-      message: "failure",
-      error,
-    });
-  }).finally(() => {
-    // remove up file from temp directory
-    fs.unlinkSync(fileInfo);
+exports.fileUpload = catchAsync(async (req, res, next) => {
+  const form = new Formidable();
+   form.parse (req, (err, fields, files) => {
+    if (err) return next(err);
+
+    let filePath = files.upload.path;
+    cloudinary.uploader.upload(filePath)
+      .then(async (result) => {
+        // create a file collection on FileModel
+        let fileCreate = await FileModel.create(result);
+        // fileCreate.version = undefined;
+        // fileCreate.signature = undefined;
+        // fileCreate.created_at = undefined;
+        // fileCreate.secure_url = undefined;
+        res.redirect('/');
+      }).catch((error) => {
+        res.status(500).send({
+          message: "failure",
+          error,
+        });
+      });
   });
 });
 

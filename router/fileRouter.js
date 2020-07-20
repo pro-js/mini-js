@@ -5,9 +5,8 @@ let {
   getAllFiles, 
   destroyFiles 
 } = require('../controller/fileController');
-let multerUploads = require('../config/multer');
 
-router.route('/upload').post(multerUploads, fileUpload);
+router.route('/upload').post(fileUpload);
 router.route('/').get(getAllFiles);
 router.route('/delete').post(destroyFiles);
 
