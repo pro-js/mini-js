@@ -1,5 +1,8 @@
 $(function() {
-
+  $("#btnIcon").hide();
+  $("#uploadBtn").click(function() {
+    $("#btnIcon").show();
+  });
   let apiUrl = "http://localhost:4000/api/photo";
   $.get(apiUrl, function() {})
     .done(function(res) {
@@ -21,29 +24,37 @@ function setPhotos(resData) {
     str += "<img class='responsive-img' src=" + resData[i].url + " alt=''>"
     str += "<i id='"+ resData[i].public_id +"' class='commonClass small ";
     str += "material-icons hoverable'>delete_forever</i>";
+    str += "<i id='Load"+ resData[i].public_id +"' class='fa fa-spinner fa-spin'></i>"
     str += "</div></div></div>";
   }
   $("#photosID").html(str);
+  for (let i = resData.length - 1; i >= 0; i--) {
+    let iconLoadId = "Load" + resData[i].public_id;
+    $("#" + iconLoadId).hide();
+  }
 }
 
 function removePhoto(resData) {
   let apiUrl = "http://localhost:4000/api/photo/delete";
-  $(".commonClass").on('click', function() {
+  $(".commonClass").click(function() {
     let thisID = this.id;
-    resData = resData.filter(el => el.public_id !== thisID);
+    $("#" + thisID).hide();
+    $("#" + "Load" + thisID).show();
     $.post(apiUrl, { public_id: thisID }, function() {})
-      .done(function (res) {
+      .done((res) => {
         showMaterialToast("Destroy Success!!!", "green darken-3");
+        resData = resData.filter(el => el.public_id !== thisID);
         setPhotos(resData);
       })
-      .fail(function () {
+      .fail(() => {
+        $("#" + "Load" + thisID).hide();
+        $("#" + thisID).show();
         showMaterialToast("Problem Destroy File!!!", "red darken-3");
       })
+      .always(() => {
+        removePhoto(resData);
+      });
   });
-}
-
-function setError() {
-  
 }
 
 /*** Show Toast ***/

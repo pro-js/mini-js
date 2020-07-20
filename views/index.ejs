@@ -7,6 +7,9 @@
   <title>File Management</title>
 
   <!--- CSS -->
+  <!-- Add icon library -->
+  <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/materialize.min.css">
   <link rel="stylesheet" href="./css/icon.css">
   <link rel="stylesheet" href="./css/style.css">
@@ -26,7 +29,10 @@
               </span>
               <br>
               <input type="file" name="upload" multiple="multiple">
-              <input class="btn" type="submit" value="Upload" id="uploadBtn">
+              <button class="btn waves-effect waves-light loadingIcon" type="submit" id="uploadBtn">
+                <i id="btnIcon" class="fa fa-spinner fa-spin"></i> Upload
+              </button>
+              <!--<input class="btn" type="submit" value="Upload" id="uploadBtn">-->
             </div>
           </div>
         </div>

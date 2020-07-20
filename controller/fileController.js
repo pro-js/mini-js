@@ -8,7 +8,10 @@ exports.fileUpload = catchAsync(async (req, res, next) => {
   const form = Formidable({ multiples: true });
   form.parse (req, (err, fields, files) => {
     if (err) return next(err);
-    
+    let fileCount = files.upload.length;
+    if (fileCount === undefined || fileCount === 0) 
+      res.redirect('/error');
+
     for (let i = 0; i < files.upload.length; i++) {
       let filePath = files.upload[i].path;
       cloudinary.uploader.upload(filePath, {
