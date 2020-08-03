@@ -3,12 +3,13 @@ $(function() {
   $("#uploadBtn").click(function() {
     $("#btnIcon").show();
   });
-  let apiUrl = "http://localhost:4000/api/photo";
+  let apiUrl = "https://pro-fileup.herokuapp.com/api/photo";
   $.get(apiUrl, function() {})
     .done(function(res) {
-      let resData = res.data.fileData;
+      let resData = res.fileData;
       setPhotos(resData);
       removePhoto(resData);
+      showMaterialToast("Data Load success ...", "green darken-3");
     })
     .fail(function() {
       showMaterialToast("Problem Load Files!!!", "red darken-3");
@@ -35,7 +36,7 @@ function setPhotos(resData) {
 }
 
 function removePhoto(resData) {
-  let apiUrl = "http://localhost:4000/api/photo/delete";
+  let apiUrl = "https://pro-fileup.herokuapp.com/api/photo/delete";
   $(".commonClass").click(function() {
     let thisID = this.id;
     $("#" + thisID).hide();

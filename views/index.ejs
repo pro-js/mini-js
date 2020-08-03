@@ -15,6 +15,21 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+  <header>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper navClass">
+          <span style="color: black; font-size: xx-large;">File-Up</span>
+          <ul class="right hide-on-med-and-down">
+            <li><a class="navFontSize scroll" href="#photo">Photo</a></li>
+            <li><a class="navFontSize scroll" href="#video">Video</a></li>
+            <li><a class="navFontSize scroll" href="#audio">Audio</a></li>
+            <li><a class="navFontSize scroll" href="#other">Other</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
   <div class="customContainer">
     <div class="row">
       <form action="/api/photo/upload" enctype="multipart/form-data" method="post">
@@ -28,7 +43,7 @@
                 </h5>
               </span>
               <br>
-              <input type="file" name="upload" multiple="multiple">
+              <input type="file" name="upload" multiple="multiple" onchange="loadFile(event)">
               <button class="btn waves-effect waves-light loadingIcon" type="submit" id="uploadBtn">
                 <i id="btnIcon" class="fa fa-spinner fa-spin"></i> Upload
               </button>
@@ -37,16 +52,17 @@
           </div>
         </div>
         <div class="col s12 m6">
-          <nav class="nav-extended">
-            <div class="nav-content">
-              <ul class="tabs tabs-transparent green lighten-1">
-                <li class="tab"><a class="active" href="/">Photos</a></li>
-                <li class="tab"><a href="#test2">Videos</a></li>
-                <li class="tab"><a href="#test3">Audio</a></li>
-                <li class="tab"><a href="#test4">Other Files</a></li>
-              </ul>
+          <div class="card center-align hoverable waves-light lighten-1">
+            <div class="card-content black-text">
+              <span class="card-title">
+                <h5 class="center">
+                  <i class="material-icons">visibility</i> 
+                  Preview
+                </h5>
+              </span>
+              <img id="output" class="responsive-img"/>
             </div>
-          </nav>
+          </div>
         </div>
       </form>
     </div>
@@ -59,5 +75,14 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/materialize.min.js"></script>
   <script src="./js/clientControl.js"></script>
+  <script>
+    let loadFile = function(event) {
+      let output = document.getElementById('output');
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+      }
+    };
+  </script>
 </body>
 </html>

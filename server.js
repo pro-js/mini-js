@@ -1,10 +1,10 @@
-let dotEnv = require('dotenv');
+const dotEnv = require('dotenv');
 dotEnv.config({ path: './config/config.env' });
 require('./config/dbConfig');
 
-let app = require('./app');
+const app = require('./app');
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 4000;
 app.listen(port , () => {
   console.log(`App run on ${port}`);
 })

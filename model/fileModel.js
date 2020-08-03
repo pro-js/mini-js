@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 let fileSchema = new mongoose.Schema({
   public_id: {

@@ -1,5 +1,9 @@
 .customContainer {
-  margin: 3rem;
+  margin: 2rem;
+}
+
+.navClass {
+  background-color: rgb(33, 138, 174)
 }
 
 .logoDesign {

@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // cloud connection-Str
 let cloudDB = process.env.DATABASE.replace(
@@ -6,14 +6,14 @@ let cloudDB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 
-mongoose.connect(process.env.DATABASE_LOCAL, {
-//mongoose.connect(cloudDB, {
+//mongoose.connect(process.env.DATABASE_LOCAL, {
+mongoose.connect(cloudDB, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
   useCreateIndex: true,
+  useUnifiedTopology: true,
   useFindAndModify: false
 }).then(() => {
   console.log('DB connect success :)');
-}).catch(() => {
+}).catch((err) => {
   console.log('Something problem to connect DB !!!');
 });

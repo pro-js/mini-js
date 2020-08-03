@@ -1,6 +1,6 @@
-let express = require('express');
-let router = express.Router();
-let { 
+const express = require('express');
+const router = express.Router();
+const { 
   fileUpload, 
   getAllFiles, 
   destroyFiles 
