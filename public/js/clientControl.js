@@ -8,6 +8,7 @@ $(function() {
     .done(function(res) {
       let resData = res.fileData;
       setPhotos(resData);
+      zoomPhotos();
       removePhoto(resData);
       showMaterialToast("Data Load success ...", "green darken-3");
     })
@@ -22,7 +23,8 @@ function setPhotos(resData) {
     str += "<div class='col s12 m3'>";
     str += "<div class='card center-align hoverable waves-light lighten-1'>";
     str += "<div class='card-content'>";
-    str += "<img class='responsive-img' src=" + resData[i].url + " alt=''>"
+    str += "<img class='responsive-img' data-enlargable  style='cursor: zoom-in' "
+    str += "src=" + resData[i].url + " alt=''>"
     str += "<i id='"+ resData[i].public_id +"' class='commonClass small ";
     str += "material-icons hoverable'>delete_forever</i>";
     str += "<i id='Load"+ resData[i].public_id +"' class='fa fa-spinner fa-spin'></i>"
@@ -33,6 +35,29 @@ function setPhotos(resData) {
     let iconLoadId = "Load" + resData[i].public_id;
     $("#" + iconLoadId).hide();
   }
+}
+
+function zoomPhotos() {
+  $('img[data-enlargable]').addClass('img-enlargable').click(function(){
+    let src = $(this).attr('src');
+    let modal;
+    function removeModal(){ modal.remove(); $('body').off('keyup.modal-close'); }
+    modal = $('<div>').css({
+        background: 'RGBA(0,0,0,.5) url('+src+') no-repeat center',
+        backgroundSize: 'contain',
+        width:'100%', height:'100%',
+        position:'fixed',
+        zIndex:'10000',
+        top:'0', left:'0',
+        cursor: 'zoom-out'
+    }).click(function(){
+        removeModal();
+    }).appendTo('body');
+    //handling ESC
+    $('body').on('keyup.modal-close', function(e){
+      if(e.key==='Escape'){ removeModal(); } 
+    });
+  });
 }
 
 function removePhoto(resData) {
