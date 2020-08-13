@@ -27,10 +27,15 @@ app.use((req, res, next) => {
 // Router
 app.get('/', (req, res) => {
   res.render('index');
-})
+});
+
+app.get('/preview', (req, res) => {
+  res.render('preview');
+});
+
 app.get('/error', (req, res) => {
   res.render('error');
-})
+});
 
 app.use('/api/photo', photoRouter);
 

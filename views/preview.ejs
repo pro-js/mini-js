@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview</title>
+
+  <script 
+    type="text/javascript" 
+    src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js">
+  </script>
+
+  <!--- CSS --> 
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/icon.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  
+  <div class="row">
+    <div class="col s12 m6 offset-l3">
+      <div class="card center-align hoverable waves-light lighten-1">
+        <div class="card-content black-text">
+          <span class="card-title">
+            <h5 class="center">
+              Drop Files
+            </h5>
+          </span>
+          <br>
+          <input 
+            type="file" 
+            name="upload" 
+            multiple="multiple" 
+            id="previewID"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <!--- Preview -->
+  <div class="row">
+    <h5 class="center">
+      <i class="material-icons">visibility</i> 
+      Preview
+    </h5>
+    <div id="outputPreview"></div>
+  </div>
+
+  <video id="test"></video>
+  <!--- JS -->
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/materialize.min.js"></script>
+  <script src="./js/preview.js"></script>
+</body>
+</html>
