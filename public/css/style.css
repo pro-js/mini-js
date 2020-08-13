@@ -15,3 +15,9 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+
+#canvas {
+  left: 0;
+  top: 0;
+  width: 100%;
+}
