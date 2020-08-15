@@ -7,8 +7,13 @@ $(function() {
         photoPreview();
     } else if (fileType === "video/mp4") {
       videoPreview(event.target.files[0]);
-    } else if (fileType === "audio/mp3") {
+    } else if (fileType === "audio/mp3" || fileType === "audio/mpeg" || 
+      fileType === "audio/wav" || fileType === "audio/aac" ||
+      fileType === "audio/ogg" || fileType === "audio/wma" ||
+      fileType === "audio/flac" || fileType === "audio/alac") {
       audioPreview(event.target.files[0]);
+    } else if (fileType === "application/pdf") {
+      pdfPreview(event.target.files[0]);
     }
   });
 });
@@ -49,7 +54,6 @@ function audioPreview(data) {
     str += "<div class='card center-align hoverable waves-light lighten-1'>";
     str += "<div class='card-content black-text'>";
     str += "<canvas id='canvas'></canvas>";
-    str += "<source id='audio_here'>";
     str += "<audio id='audio' controls></audio>";
     str += "</div></div></div>";
   $("#outputPreview").html(str);
@@ -92,6 +96,20 @@ function audioPreview(data) {
       x += barWidth + 1;
     }
   }
+
   audio.play();
-  renderFrame();
+  renderFrame(); 
 };
+
+function pdfPreview(data) {
+  let str = "<div class='col s12 m10 offset-l1'>";
+    str += "<div class='card center-align hoverable waves-light lighten-1'>";
+    str += "<div class='card-content black-text'>";
+    str += "<embed id='pdfID' width='100%' height='780px' />";
+    str += "</div></div></div>";
+  $("#outputPreview").html(str);
+  $("#outputPreview").show();
+  
+  let $source = $('#pdfID');
+  $source[0].src = URL.createObjectURL(data);
+}
