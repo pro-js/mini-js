@@ -3,7 +3,7 @@ $(function() {
   $("#uploadBtn").click(function() {
     $("#btnIcon").show();
   });
-  let apiUrl = "https://pro-fileup.herokuapp.com/api/photo";
+  let apiUrl = "https://mini-js.herokuapp.com/api/photo";
   $.get(apiUrl, function() {})
     .done(function(res) {
       let resData = res.fileData;
@@ -61,7 +61,7 @@ function zoomPhotos() {
 }
 
 function removePhoto(resData) {
-  let apiUrl = "https://pro-fileup.herokuapp.com/api/photo/delete";
+  let apiUrl = "https://mini-js.herokuapp.com/api/photo/delete";
   $(".commonClass").click(function() {
     let thisID = this.id;
     $("#" + thisID).hide();
