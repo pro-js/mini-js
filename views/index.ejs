@@ -1,92 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel='shortcut icon' type='image/x-icon' href='./img/favicon.ico' />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>File Management</title>
+  <title>Mini-Projects</title>
 
-  <!--- CSS -->
-  <!-- Add icon library -->
-  <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./css/materialize.min.css">
-  <link rel="stylesheet" href="./css/icon.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <!--- CSS --> 
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  >
+  <link 
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons" 
+  >
+  <link rel="stylesheet" href="./../css/style.css">
 </head>
 <body>
-  <header>
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper navClass">
-          <span style="color: black; font-size: xx-large;">File-Up</span>
-          <ul class="right hide-on-med-and-down">
-            <li><a class="navFontSize scroll" href="#photo">Photo</a></li>
-            <li><a class="navFontSize scroll" href="#video">Video</a></li>
-            <li><a class="navFontSize scroll" href="#audio">Audio</a></li>
-            <li><a class="navFontSize scroll" href="#other">Other</a></li>
-            <li><a class="navFontSize scroll" 
-              href="https://mini-js.herokuapp.com/preview">Previews</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <div class="customContainer">
-    <div class="row">
-      <form action="/api/photo/upload" enctype="multipart/form-data" method="post">
-        <div class="col s12 m6">
-          <div class="card center-align hoverable waves-light lighten-1">
-            <div class="card-content black-text">
-              <span class="card-title">
-                <h5 class="center">
-                  <i class="material-icons">cloud_upload</i> 
-                  Upload Photos
-                </h5>
-              </span>
-              <br>
-              <input type="file" name="upload" multiple="multiple" onchange="loadFile(event)">
-              <button class="btn waves-effect waves-light loadingIcon" type="submit" id="uploadBtn">
-                <i id="btnIcon" class="fa fa-spinner fa-spin"></i> Upload
-              </button>
-              <!--<input class="btn" type="submit" value="Upload" id="uploadBtn">-->
-            </div>
+  
+  <div class="row">
+    <div class="col s12 m10 offset-l1">
+      <div class="card center-align hoverable waves-light lighten-1">
+        <div class="card-content black-text">
+          <div>
+            <ul class="collection with-header">
+              <li class="collection-header">
+                <h4>
+                  <i class="material-icons">settings</i> 
+                    Mini Projects 
+                  <i class="material-icons">settings</i>
+                </h4>
+              </li>
+              <li class="collection-item avatar">
+                <img class="responsive-img" height="50px" width="150px" 
+                  src="./img/preview.png" alt="preview" srcset=""
+                >
+                <div class="flow-text">
+                  File Preview 
+                  <a href="/mini/preview" class="secondary-content">
+                    <i class="material-icons">send</i>
+                  </a>
+                </div>
+              </li>
+              <li class="collection-item avatar">
+                <img class="responsive-img" height="50px" width="150px" 
+                  src="./img/crawler.png" alt="crawling" srcset=""
+                >
+                <div class="flow-text">
+                  View Image from any Web-Site (Web Crawling)
+                  <a href="/mini/crawling-img" class="secondary-content">
+                    <i class="material-icons">send</i>
+                  </a>
+                </div>
+              </li>
+             
+            </ul>
           </div>
         </div>
-        <div class="col s12 m6">
-          <div class="card center-align hoverable waves-light lighten-1">
-            <div class="card-content black-text">
-              <span class="card-title">
-                <h5 class="center">
-                  <i class="material-icons">visibility</i> 
-                  Preview
-                </h5>
-              </span>
-              <img id="output" class="responsive-img"/>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="row">
-      <div id="photosID"></div>
+      </div>
     </div>
   </div>
 
   <!--- JS -->
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/materialize.min.js"></script>
-  <script src="./js/clientControl.js"></script>
-  <script>
-    // Image Preview
-    let loadFile = function(event) {
-      let output = document.getElementById('output');
-      output.src = URL.createObjectURL(event.target.files[0]);
-      output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-      }
-    };
+  <script 
+    src="https://code.jquery.com/jquery-3.5.1.min.js">
+  </script>
+  <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
   </script>
 </body>
 </html>

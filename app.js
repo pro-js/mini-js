@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser')
 const photoRouter = require('./router/fileRouter');
+const miniRouter = require('./router/miniRouter');
 
 // body parser configuration
 // parse application/x-www-form-urlencoded
@@ -29,14 +30,11 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/preview', (req, res) => {
-  res.render('preview');
-});
-
 app.get('/error', (req, res) => {
   res.render('error');
 });
 
+app.use('/mini', miniRouter)
 app.use('/api/photo', photoRouter);
 
 module.exports = app;
