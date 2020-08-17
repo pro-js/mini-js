@@ -16,10 +16,15 @@ router
   .get((req, res) => {
     res.render('crawling');
   });
+router.route('/api/crawling-img/').get(getImg);
 
 /*** Tv API ***/
+router
+  .route('/iptv')
+  .get((req, res) => {
+    res.render('iptv');
+  });
 router.route('/api/iptv').get(getIPTV);
 
-router.route('/api/crawling-img/').get(getImg);
 
 module.exports = router;
