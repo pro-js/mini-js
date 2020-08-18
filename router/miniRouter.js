@@ -33,12 +33,12 @@ router.route('/api/iptv').get(getIPTV);
 
 /*** URL Sort ***/
 router
-  .route('/urlsort')
+  .route('/urlshort')
   .get((req, res) => {
-    res.render('urlsort');
+    res.render('urlshort');
   });
 
-router.route('/urlsort/geturls').get(getURLs);
-router.route('/urlsort/posturl').get(postURL);
+router.route('/urlshort/geturls').get(getURLs);
+router.route('/urlshort/posturl').get(postURL);
 
 module.exports = router;

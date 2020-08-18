@@ -23,7 +23,7 @@ $(function() {
         if (!isUrlValid(fullurl)) {
           showToast("Invalid URL", "yellow darken-3");
         } else {
-          let apiURL = "https://mini-js.herokuapp.com/mini/urlsort/posturl?fullurl=" 
+          let apiURL = "https://mini-js.herokuapp.com/mini/urlshort/posturl?fullurl=" 
           + fullurl + "&token=" + token + "&shortURL=" + shortURL;
           $.get(apiURL, function() {})
             .done((res) => {
@@ -52,7 +52,7 @@ function isUrlValid(url) {
 }
 
 function getURLs(token) {
-  let apiURL = "https://mini-js.herokuapp.com/mini/urlsort/geturls?token=" + token;
+  let apiURL = "https://mini-js.herokuapp.com/mini/urlshort/geturls?token=" + token;
   $.get(apiURL, function() {})
     .done((res) => {
       if (res.length > 0) {
