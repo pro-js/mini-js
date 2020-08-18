@@ -5,17 +5,26 @@ const shortid = require('shortid');
 exports.postURL = catchAsync(async (req, res, next) => {
   let token = req.query.token,
     fullurl = req.query.fullurl,
+    shorturl = req.query.shortURL;
+
+  if (shorturl === "morol") {
     shorturl = shortid.generate();
+  }
   
   let data = {
     fullurl: fullurl,
     shorturl: shorturl,
     token: token
   }
-  data = await sorturlModel.create(data);   
   res.setHeader('Content-type', 'application/json');
-  if (data) res.status(200).json({ "status": "ok" });
-  else res.status(200).json({ "status": "failed" });
+  let oldData = await sorturlModel.findOne({ shorturl: shorturl });
+  if (oldData) {
+    res.status(200).json({ "status": "used" });
+  } else {
+    data = await sorturlModel.create(data);   
+    if (data) res.status(200).json({ "status": "ok" });
+    else res.status(200).json({ "status": "failed" });
+  }
 });
 
 exports.getURLs = catchAsync(async (req, res, next) => {

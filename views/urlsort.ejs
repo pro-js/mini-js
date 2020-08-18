@@ -25,7 +25,7 @@
   
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h5 class="center">Provide your new/old token</h5>
+      <h5 class="center">Provide your new/old secret key</h5>
       <input 
         placeholder="eg. Morol"
         type="text" 
@@ -54,6 +54,18 @@
               name="baseURL" 
               id="fullURL"
             >
+            <div class="row">
+              <label class="left">
+                <input id="checkboxID" type="checkbox" />
+                <span>Custom Short URL</span>
+              </label>
+              <input 
+                type="text" 
+                placeholder="eg. morol"
+                name="shortURL" 
+                id="shortURL"
+              >
+            </div>
             <input 
               class="btn" 
               type="button" 
@@ -78,12 +90,6 @@
   </script>
   <script 
     src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-  </script>
-  <script>
-    $(document).ready(function(){
-      $('.modal').modal();
-      $('#modal1').modal('open'); 
-    });
   </script>
   <script src="./../js/urlsortController.js"></script>
 </body>
