@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser')
 const photoRouter = require('./router/fileRouter');
 const miniRouter = require('./router/miniRouter');
+const sorturlModel = require('./model/sorturlModel');
 
 // body parser configuration
 // parse application/x-www-form-urlencoded
@@ -36,5 +37,21 @@ app.get('/error', (req, res) => {
 
 app.use('/mini', miniRouter)
 app.use('/api/photo', photoRouter);
+
+/*** Special Route ***/
+app.get('/:shortUrl', async (req, res) => {
+  let query = req.params.shortUrl;
+  const data = 
+    await sorturlModel.findOne({ shorturl: query });
+  if (data == null) {
+    res.render('error');
+  }
+  let newCnt = data.clicks + 1;
+  await sorturlModel.updateOne(
+    {shorturl : query}, 
+    {$set : {clicks : newCnt}}
+  );
+  res.redirect(data.fullurl);
+});
 
 module.exports = app;

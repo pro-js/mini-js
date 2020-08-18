@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { getImg } = require('./../controller/crawlingController');
 const { getIPTV } = require('./../controller/tvController');
+const { 
+  postURL, 
+  getURLs 
+} = require('./../controller/urlsortController');
+
 
 /*** File Preview  ***/
 router
@@ -26,5 +31,14 @@ router
   });
 router.route('/api/iptv').get(getIPTV);
 
+/*** URL Sort ***/
+router
+  .route('/urlsort')
+  .get((req, res) => {
+    res.render('urlsort');
+  });
+
+router.route('/urlsort/geturls').get(getURLs);
+router.route('/urlsort/posturl').get(postURL);
 
 module.exports = router;
