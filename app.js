@@ -41,17 +41,17 @@ app.use('/api/photo', photoRouter);
 /*** Special Route ***/
 app.get('/:shortUrl', async (req, res) => {
   let query = req.params.shortUrl;
-  const data = 
+  const urlData = 
     await sorturlModel.findOne({ shorturl: query });
-  if (data == null) {
+  if (urlData == null) {
     res.render('error');
   }
-  let newCnt = data.clicks + 1;
+  let newCnt = urlData.clicks + 1;
   await sorturlModel.updateOne(
     {shorturl : query}, 
     {$set : {clicks : newCnt}}
   );
-  res.redirect(data.fullurl);
+  res.redirect(urlData.fullurl);
 });
 
 module.exports = app;
