@@ -3,6 +3,10 @@ const router = express.Router();
 const { getImg } = require('./../controller/crawlingController');
 const { getIPTV } = require('./../controller/tvController');
 const { 
+  getBDCrimeData,
+  getCrimeDataFromBDPolice 
+} = require('./../controller/bdcrimeController');
+const { 
   postURL, 
   getURLs 
 } = require('./../controller/urlsortController');
@@ -40,5 +44,9 @@ router
 
 router.route('/urlshort/geturls').get(getURLs);
 router.route('/urlshort/posturl').get(postURL);
+
+/*** BD Crime visualization ***/
+//router.route('/bdcrime').get(getCrimeDataFromBDPolice);
+router.route('/special/bdcrime').get(getCrimeDataFromBDPolice);
 
 module.exports = router;
