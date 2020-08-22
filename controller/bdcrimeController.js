@@ -4,7 +4,19 @@ const cherio = require('cherio');
 const HtmlTableToJson = require('html-table-to-json');
 const bdcrimeModel = require('./../model/bdcrimeModel');
 
+exports.getBDCrimeData = catchAsync(async (req, res, next) => {
+  let query = req.query.year;
+  let data = await bdcrimeModel.find({ CrimeYear: query });
 
+  res.setHeader('Content-type', 'application/json');
+  res.status(200).json({
+    "status": "ok",
+    "length": data.length,
+    "CrimeYear": query,
+    "req-Time": new Date(),
+    data
+  });
+});
 
 /*** get data using Web-crawling tech ***/
 exports.getCrimeDataFromBDPolice = catchAsync(async (req, res, next) => {
