@@ -94,3 +94,19 @@
     transform: translateY(-25px);
   }
 }
+
+/* BD crime table */
+table th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-top: 0;
+  background: #ffffff;
+}
+
+.scrollableTable {
+  width: auto;
+  height: 30rem;
+  overflow-y: scroll;
+}

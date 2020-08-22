@@ -7,7 +7,9 @@ const bdcrimeModel = require('./../model/bdcrimeModel');
 exports.getBDCrimeData = catchAsync(async (req, res, next) => {
   let query = req.query.year;
   let data = await bdcrimeModel.find({ CrimeYear: query });
-
+  if (data.length === 0) {
+    data = await bdcrimeModel.find();
+  }
   res.setHeader('Content-type', 'application/json');
   res.status(200).json({
     "status": "ok",

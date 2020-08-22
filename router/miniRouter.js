@@ -46,6 +46,12 @@ router.route('/urlshort/geturls').get(getURLs);
 router.route('/urlshort/posturl').get(postURL);
 
 /*** BD Crime visualization ***/
+router
+  .route('/bdcrime')
+  .get((req, res) => {
+    res.render('bdcrime');
+  });
+
 router.route('/api/bdcrime')
   .get(getBDCrimeData);
 
