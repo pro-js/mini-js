@@ -11,6 +11,7 @@ const {
   getURLs 
 } = require('./../controller/urlsortController');
 
+const { getMinify } = require('./../controller/minifyJSController');
 
 /*** File Preview  ***/
 router
@@ -57,5 +58,9 @@ router.route('/api/bdcrime')
 
 router.route('/special/bdcrime')
   .get(getCrimeDataFromBDPolice);
+
+/*** JS minify ***/ 
+router.route('/data')
+  .post(getMinify);
 
 module.exports = router;
